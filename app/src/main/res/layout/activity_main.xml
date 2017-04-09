@@ -3,59 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-  >
+    android:layout_height="match_parent">
 
 
     <LinearLayout
-    android:layout_alignParentBottom="true"
-    android:layout_width="match_parent"
-    android:layout_height="60dp">
-    <Button
-        android:text="变换头像"
-        android:id="@+id/bt1"
-        android:onClick="click"
-        android:layout_width="1dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent" />
-    <Button
-        android:text="小图变小"
-        android:onClick="click"
-        android:id="@+id/bt2"
-        android:layout_width="1dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent" />
-    <Button
-        android:text="有圆边"
-        android:onClick="click"
-        android:id="@+id/bt3"
-        android:layout_width="1dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent" />
-    <Button
-        android:text="有进度条"
-        android:onClick="click"
-        android:id="@+id/bt4"
-        android:layout_width="1dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent" />
-    <Button
-        android:text="变成文字"
-        android:onClick="click"
-        android:id="@+id/bt5"
-        android:layout_width="1dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent" />
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/bt1"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="click"
+            android:text="变换头像" />
+
+        <Button
+            android:id="@+id/bt2"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="click"
+            android:text="小图变小" />
+
+        <Button
+            android:id="@+id/bt3"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="click"
+            android:text="有圆边" />
+
+        <Button
+            android:id="@+id/bt4"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="click"
+            android:text="有进度条" />
+
+        <Button
+            android:id="@+id/bt5"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="click"
+            android:text="变成文字" />
 
 
-</LinearLayout>
+    </LinearLayout>
+
+
 
     <com.example.identityimageview.widegt.IdentityImageView
-
         android:id="@+id/iiv"
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:iciv_progress_collor="@color/colorPrimary"
-     android:layout_centerInParent="true">
-    </com.example.identityimageview.widegt.IdentityImageView>
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"></com.example.identityimageview.widegt.IdentityImageView>
 </RelativeLayout>

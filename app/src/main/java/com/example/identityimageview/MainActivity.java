@@ -17,8 +17,9 @@ public class MainActivity extends AppCompatActivity {
     private Button bt4;
     private Button bt3;
     private Button bt5;
-    private int i = 20;
-    private int angle=30;
+    private int i = 10;
+    private int angle = 30;
+    private boolean flag;//文字是否出现
 
 
     @Override
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.bt1://填充头像
                 identityImageView.getBigCircleImageView().setImageResource(R.mipmap.guojia);
+
                 break;
             case R.id.bt2:
                 //改变图片比例大小，
@@ -50,23 +52,32 @@ public class MainActivity extends AppCompatActivity {
                 //增加边框
                 identityImageView.setBorderWidth(100);
                 identityImageView.setBorderColor(R.color.colorTest);
-                identityImageView.setAngle(angle+=10);
+                identityImageView.setAngle(angle += 7);
+                if (angle >= 58) {
+                    angle = 18;
+                }
                 break;
             case R.id.bt4:
                 //增加进度条，没按一次加10,以及改变的角度
                 identityImageView.setIsprogress(true);
-                if (i == 30) {
-                    identityImageView.setAngle(315);
-                }
                 identityImageView.setProgressColor(R.color.colorAccent);
 
                 identityImageView.setProgress(i += 10);
 
                 break;
             case R.id.bt5:
-                identityImageView.getSmallCircleImageView().setVisibility(View.GONE);
+                identityImageView.getSmallCircleImageView().setImageResource(R.mipmap.v);
+                if (flag) {
+                    identityImageView.getTextView().setVisibility(View.VISIBLE);
+                    identityImageView.getSmallCircleImageView().setVisibility(View.GONE);
+                    flag=false;
+                } else {
+                    identityImageView.getTextView().setVisibility(View.GONE);
+                    identityImageView.getSmallCircleImageView().setVisibility(View.VISIBLE);
+                flag=true;
+                }
                 identityImageView.getTextView().setBackgroundColor((getResources().getColor(R.color.colorTest)));
-                identityImageView.getTextView().setText("我是\n文字");
+                identityImageView.getTextView().setText("V");
                 break;
             default:
                 break;
