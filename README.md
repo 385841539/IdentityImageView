@@ -2,7 +2,7 @@
 一个能带进度条的图片框架，同时有身份标识动能，简单易用
 
 ## 效果图：
-![效果图](https://github.com/385841539/IdentityImageView/tree/master/app/src/main/res/drawable)
+![效果图](https://github.com/385841539/IdentityImageView/blob/master/app/src/main/res/drawable/biaoshi.gif)
 ## 如何使用/How to use？
 ### 添加以来（或者直接把项目中的两个自定义View拷贝下来也可以这个类放到项目里面
 >> 1.先在 build.gradle(Project:XXXX) 的 repositories 添加:
