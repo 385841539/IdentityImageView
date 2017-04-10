@@ -53,10 +53,6 @@ public class IdentityImageView extends ViewGroup {
     public IdentityImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
-        bigImageView = new CircleImageView(mContext);
-        smallImageView = new CircleImageView(mContext);
-        textView = new TextView(mContext);
-        textView.setGravity(Gravity.CENTER);
         setWillNotDraw(false);//是的ondraw方法被执行
         initAttrs(attrs);
     }
@@ -87,8 +83,7 @@ public class IdentityImageView extends ViewGroup {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        addThreeView();
+        Log.d("draw", "draw: ");
         initPaint();
         if (isprogress) {
             drawProgress(canvas);
@@ -142,7 +137,8 @@ public class IdentityImageView extends ViewGroup {
     @Override
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
         //重点在于smallImageView的位置确定,默认为放在右下角，可自行拓展至其他位置
-
+        Log.d("layout", "onLayout: ");
+        addThreeView();
         double cos = Math.cos(angle * Math.PI / 180);
         double sin = Math.sin(angle * Math.PI / 180);
         double left = radius + (radius * cos - smallRadius);
@@ -153,23 +149,36 @@ public class IdentityImageView extends ViewGroup {
         textView.layout((int) left, (int) top, right, bottom);
         smallImageView.layout((int) left, (int) top, right, bottom);
 
+
     }
 
     private void addThreeView() {
-        removeView(smallImageView);
-        removeView(bigImageView);
-        removeView(textView);
+
+        if (bigImageView == null)
+            bigImageView = new CircleImageView(mContext);
+        if (smallImageView == null)
+            smallImageView = new CircleImageView(mContext);
+        if (textView == null) {
+            textView = new TextView(mContext);
+            textView.setGravity(Gravity.CENTER);
+        }
         if (bigImageView != null) {
+            removeView(bigImageView);
             addView(bigImageView, radius, radius);
         }
 
         smallRadius = (int) (radius * radiusScale);
-        if (smallImageView != null) {;
+        if (smallImageView != null) {
+            removeView(smallImageView);
             addView(smallImageView, smallRadius, smallRadius);
         }
-        addView(textView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        if (textView != null) {
+            removeView(textView);
+            addView(textView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        }
 
     }
+
 
     private void initAttrs(AttributeSet attrs) {
         TintTypedArray tta = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
@@ -238,6 +247,7 @@ public class IdentityImageView extends ViewGroup {
             return;
         }
         progresss = angle;
+        requestLayout();
         invalidate();
     }
 
@@ -249,6 +259,7 @@ public class IdentityImageView extends ViewGroup {
     public void setAngle(int angles) {
         if (angles == angle) return;
         angle = angles;
+        requestLayout();
         invalidate();
     }
 
@@ -259,8 +270,8 @@ public class IdentityImageView extends ViewGroup {
      */
     public void setRadiusScale(float v) {
         if (v == radiusScale) return;
-
         radiusScale = v;
+        requestLayout();
         invalidate();
 
     }
@@ -274,6 +285,7 @@ public class IdentityImageView extends ViewGroup {
 
         if (b == isprogress) return;
         isprogress = b;
+        requestLayout();
         invalidate();
     }
 
@@ -285,6 +297,7 @@ public class IdentityImageView extends ViewGroup {
     public void setBorderColor(int color) {
         if (color == borderColor) return;
         borderColor = color;
+        requestLayout();
         invalidate();
 
     }
@@ -298,6 +311,7 @@ public class IdentityImageView extends ViewGroup {
 //        if (color == progressCollor) return;
         Log.e("color", "color: " + color + ",progressCollor:" + progressCollor);
         setprogressColor = color;
+        requestLayout();
         invalidate();
     }
 
@@ -305,6 +319,7 @@ public class IdentityImageView extends ViewGroup {
         if (width == borderWidth) return;
         ;
         borderWidth = width;
-        invalidate();
+        requestLayout();//重走onLayout方法
+        invalidate();//重走onDraw方法
     }
 }
