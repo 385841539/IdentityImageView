@@ -73,7 +73,7 @@ public class IdentityImageView extends ViewGroup {
         int viewHeight = MeasureSpec.getSize(heightMeasureSpec);
         switch (viewWidthMode) {
             case MeasureSpec.EXACTLY:   //说明在布局文件中使用的是具体值：100dp或者match_parent
-                //为了方便，让半径等于宽高中小的那个，再设置宽高至半径大小
+                //为了方便，让半径等于宽高中小的那个，再设置宽高至直径大小
                 int totalwidth = viewWidht < viewHeight ? viewWidht : viewHeight;
                 radius = totalwidth / 2;
                 break;
