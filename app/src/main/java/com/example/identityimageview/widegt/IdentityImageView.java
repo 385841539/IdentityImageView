@@ -54,6 +54,13 @@ public class IdentityImageView extends ViewGroup {
         super(context, attrs, defStyleAttr);
         mContext = context;
         setWillNotDraw(false);//是的ondraw方法被执行
+
+        bigImageView = new CircleImageView(mContext);
+
+        smallImageView = new CircleImageView(mContext);
+
+        textView = new TextView(mContext);
+        textView.setGravity(Gravity.CENTER);
         initAttrs(attrs);
     }
 
@@ -151,15 +158,6 @@ public class IdentityImageView extends ViewGroup {
     }
 
     private void addThreeView() {
-
-        if (bigImageView == null)
-            bigImageView = new CircleImageView(mContext);
-        if (smallImageView == null)
-            smallImageView = new CircleImageView(mContext);
-        if (textView == null) {
-            textView = new TextView(mContext);
-            textView.setGravity(Gravity.CENTER);
-        }
 
         removeView(bigImageView);
         addView(bigImageView, radius, radius);
