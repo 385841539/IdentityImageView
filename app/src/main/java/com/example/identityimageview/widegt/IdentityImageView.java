@@ -83,7 +83,6 @@ public class IdentityImageView extends ViewGroup {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Log.d("draw", "draw: ");
         initPaint();
         if (isprogress) {
             drawProgress(canvas);
@@ -137,7 +136,6 @@ public class IdentityImageView extends ViewGroup {
     @Override
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
         //重点在于smallImageView的位置确定,默认为放在右下角，可自行拓展至其他位置
-        Log.d("layout", "onLayout: ");
         addThreeView();
         double cos = Math.cos(angle * Math.PI / 180);
         double sin = Math.sin(angle * Math.PI / 180);
@@ -162,20 +160,19 @@ public class IdentityImageView extends ViewGroup {
             textView = new TextView(mContext);
             textView.setGravity(Gravity.CENTER);
         }
-        if (bigImageView != null) {
-            removeView(bigImageView);
-            addView(bigImageView, radius, radius);
-        }
+
+        removeView(bigImageView);
+        addView(bigImageView, radius, radius);
+
 
         smallRadius = (int) (radius * radiusScale);
-        if (smallImageView != null) {
-            removeView(smallImageView);
-            addView(smallImageView, smallRadius, smallRadius);
-        }
-        if (textView != null) {
-            removeView(textView);
-            addView(textView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-        }
+
+        removeView(smallImageView);
+        addView(smallImageView, smallRadius, smallRadius);
+
+
+        removeView(textView);
+        addView(textView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
     }
 
@@ -240,7 +237,7 @@ public class IdentityImageView extends ViewGroup {
     /**
      * 设置进度条进度，一共360
      *
-     * @param angle
+     * @param angle 进度大小
      */
     public void setProgress(float angle) {
         if (progresss == angle) {
@@ -254,7 +251,7 @@ public class IdentityImageView extends ViewGroup {
     /**
      * 设置标识的角度
      *
-     * @param angles
+     * @param angles 角度
      */
     public void setAngle(int angles) {
         if (angles == angle) return;
@@ -266,7 +263,7 @@ public class IdentityImageView extends ViewGroup {
     /**
      * 设置标识的大小
      *
-     * @param v
+     * @param v 比例
      */
     public void setRadiusScale(float v) {
         if (v == radiusScale) return;
@@ -279,7 +276,7 @@ public class IdentityImageView extends ViewGroup {
     /**
      * 设置是否可以有进度条
      *
-     * @param b
+     * @param b 是否有进度条
      */
     public void setIsprogress(boolean b) {
 
@@ -292,7 +289,7 @@ public class IdentityImageView extends ViewGroup {
     /**
      * 设置填充的颜色
      *
-     * @param color
+     * @param color 边框颜色
      */
     public void setBorderColor(int color) {
         if (color == borderColor) return;
@@ -305,16 +302,19 @@ public class IdentityImageView extends ViewGroup {
     /**
      * 设置进度条颜色
      *
-     * @param color
+     * @param color 进度条颜色
      */
     public void setProgressColor(int color) {
-//        if (color == progressCollor) return;
-        Log.e("color", "color: " + color + ",progressCollor:" + progressCollor);
+        if (color == progressCollor) return;
         setprogressColor = color;
         requestLayout();
         invalidate();
     }
 
+    /**
+     *
+     * @param width 边框和进度条宽度
+     */
     public void setBorderWidth(int width) {
         if (width == borderWidth) return;
         ;
