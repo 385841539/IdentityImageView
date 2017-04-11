@@ -5,17 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.ActionBarOverlayLayout;
 import android.support.v7.widget.TintTypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.identityimageview.R;
 
 /**
  * Created by 丁瑞 on 2017/4/9.
@@ -55,12 +50,8 @@ public class IdentityImageView extends ViewGroup {
         mContext = context;
         setWillNotDraw(false);//是的ondraw方法被执行
 
-        bigImageView = new CircleImageView(mContext);
+        addThreeView();
 
-        smallImageView = new CircleImageView(mContext);
-
-        textView = new TextView(mContext);
-        textView.setGravity(Gravity.CENTER);
         initAttrs(attrs);
     }
 
@@ -73,7 +64,7 @@ public class IdentityImageView extends ViewGroup {
         int viewHeight = MeasureSpec.getSize(heightMeasureSpec);
         switch (viewWidthMode) {
             case MeasureSpec.EXACTLY:   //说明在布局文件中使用的是具体值：100dp或者match_parent
-                //为了方便，让半径等于宽高中小的那个，再设置宽高至直径大小
+                //为了方便，让半径等于宽高中小的那个，再设置宽高至半径大小
                 int totalwidth = viewWidht < viewHeight ? viewWidht : viewHeight;
                 radius = totalwidth / 2;
                 break;
@@ -86,6 +77,7 @@ public class IdentityImageView extends ViewGroup {
                 break;
         }
         setMeasuredDimension(2 * radius, 2 * radius);
+        adjustThreeView();
     }
 
     @Override
@@ -103,7 +95,7 @@ public class IdentityImageView extends ViewGroup {
     /**
      * 画边框
      *
-     * @param canvas
+     * @param canvas 画布
      */
     private void drawBorder(Canvas canvas) {
         canvas.drawCircle(radius, radius, radius - borderWidth / 2, mBorderPaint);
@@ -143,7 +135,7 @@ public class IdentityImageView extends ViewGroup {
     @Override
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
         //重点在于smallImageView的位置确定,默认为放在右下角，可自行拓展至其他位置
-        addThreeView();
+
         double cos = Math.cos(angle * Math.PI / 180);
         double sin = Math.sin(angle * Math.PI / 180);
         double left = radius + (radius * cos - smallRadius);
@@ -154,30 +146,43 @@ public class IdentityImageView extends ViewGroup {
         textView.layout((int) left, (int) top, right, bottom);
         smallImageView.layout((int) left, (int) top, right, bottom);
 
+    }
 
+    private void adjustThreeView() {
+        bigImageView.setLayoutParams(new LayoutParams(radius, radius));
+        smallRadius = (int) (radius * radiusScale);
+        smallImageView.setLayoutParams(new LayoutParams(smallRadius, smallRadius));
+        textView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
     }
 
     private void addThreeView() {
 
-        removeView(bigImageView);
-        addView(bigImageView, radius, radius);
+
+        bigImageView = new CircleImageView(mContext);//大圆
+
+        smallImageView = new CircleImageView(mContext);//小圆
+
+        textView = new TextView(mContext);//文本
+        textView.setGravity(Gravity.CENTER);
+
+        addView(bigImageView, 0, new LayoutParams(radius, radius));
 
 
         smallRadius = (int) (radius * radiusScale);
 
-        removeView(smallImageView);
-        addView(smallImageView, smallRadius, smallRadius);
+        addView(smallImageView, 1, new LayoutParams(smallRadius, smallRadius));
 
 
-        removeView(textView);
         addView(textView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         smallImageView.bringToFront();//使小图片位于最上层
+
 
     }
 
 
     private void initAttrs(AttributeSet attrs) {
         TintTypedArray tta = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
+
                 R.styleable.IdentityImageView);
         bigImage = tta.getDrawable(R.styleable.IdentityImageView_iciv_bigimage);
         smallimage = tta.getDrawable(R.styleable.IdentityImageView_iciv_smallimage);
@@ -205,7 +210,7 @@ public class IdentityImageView extends ViewGroup {
     /**
      * 获得textview
      *
-     * @return
+     * @return textView
      */
     public TextView getTextView() {
         if (textView != null) return textView;
@@ -215,7 +220,7 @@ public class IdentityImageView extends ViewGroup {
     /**
      * 获得大图片
      *
-     * @return
+     * @return bigImageView
      */
     public CircleImageView getBigCircleImageView() {
         if (bigImageView != null) return bigImageView;
@@ -225,7 +230,7 @@ public class IdentityImageView extends ViewGroup {
     /**
      * 获得小图片
      *
-     * @return
+     * @return smallImageView
      */
     public CircleImageView getSmallCircleImageView() {
         if (smallImageView != null)
@@ -311,7 +316,6 @@ public class IdentityImageView extends ViewGroup {
     }
 
     /**
-     *
      * @param width 边框和进度条宽度
      */
     public void setBorderWidth(int width) {
