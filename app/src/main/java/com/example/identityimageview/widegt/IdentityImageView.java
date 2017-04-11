@@ -171,6 +171,7 @@ public class IdentityImageView extends ViewGroup {
 
         removeView(textView);
         addView(textView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        smallImageView.bringToFront();//使小图片位于最上层
 
     }
 
