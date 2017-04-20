@@ -54,22 +54,7 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
         android:layout_centerHorizontal="true"></com.example.identityimageview.widegt.IdentityImageView>
 ```
 
-```
 
-
- 
-```
-
-     <attr name="iciv_bigimage" format="reference"></attr><!--大图片-->
-        <attr name="iciv_smallimage" format="reference"></attr><!--小图片-->
-        <attr name="iciv_angle" format="float"></attr><!--标识角度-->
-        <attr name="iciv_radiusscale" format="float"></attr><!--大小图片比例-->
-        <attr name="iciv_isprogress" format="boolean"></attr><!--是否有进度条-->
-        <attr name="iciv_progress_collor" format="color|reference"></attr><!--进度条颜色-->
-        <attr name="iciv_border_color" format="color|reference"></attr><!--边框颜色-->
-        <attr name="iciv_border_width" format="integer"></attr><!--边框宽度-->
-        <attr name="iciv_hint_smallimageview" format="boolean"></attr><!--是否隐藏小图片-->
-```
 自定义(均设有默认值，可不使用)：
 
 
@@ -78,9 +63,12 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 | iciv_bigimage				| reference 			|大图片|
 | iciv_smallimage		| reference       	    | 小图片(标识)|
 | iciv_angle				| float angle     	| 标识的角度，默认为45度|
-| setInterpolator			| Interpolator interpolator | 设置动画插补器，修饰动画效果.默认模式为LinearOutSlowInInterpolator. [Interpolator官方文档](https://developer.android.google.cn/reference/android/view/animation/Interpolator.html)|
-
-
+| iciv_radiusscale			| float x |大小图片比例,默认为0.2|
+| iciv_isprogress|boolean flag | 是否有进度条,默认为false,如果要用，必须设置为true|
+|iciv_progress_collor|Color color Or reference|  进度条颜色|
+|  iciv_border_color  |Color color Or reference|  边框颜色  |
+|  iciv_border_width  |integer y| 边框和进度条宽度  |
+|iciv_hint_smallimageview | boolean|  是否隐藏小图片|
 ```java
 
 	CommonBehavior.from(mFloatingActionButton).show();//代码控制显示
