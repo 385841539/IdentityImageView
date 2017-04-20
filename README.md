@@ -11,7 +11,8 @@
 CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.csdn.net/iamdingruihaha/article/details/69895266)
 
 
-## Download(简单的两个类，最好下载下来，方便更改)
+
+# Download(简单的两个类：IdentityImageView，CircleImageView,最好下载下来，方便更改)
 ```java
     allprojects {
 	    repositories {
