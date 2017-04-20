@@ -1,16 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
 # IdentityImageView
 一个能带进度条的图片框架，同时有身份标识动能，简单易用
 
@@ -23,7 +11,7 @@
 CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.csdn.net/iamdingruihaha/article/details/69895266)
 
 
-## Download
+## Download(简单的两个类，最好下载下来，方便更改)
 ```java
     allprojects {
 	    repositories {
@@ -41,7 +29,7 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 # Usage
 
 
-基本使用：
+### 基本使用：
 
 
 ```xml
@@ -55,10 +43,10 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 ```
 
 
-自定义(均设有默认值，可不使用)：
+### 自定义(均设有默认值，可不使用)：
 
 
-| 命名           	 		|    参数           	| 说明  					|
+| 属性           	 		|    参数           	| 说明  					|
 | ------------------------- |------------------ | --------------------- |
 | iciv_bigimage				| reference 			|大图片|
 | iciv_smallimage		| reference       	    | 小图片(标识)|
@@ -69,6 +57,10 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 |  iciv_border_color  |Color color Or reference|  边框颜色  |
 |  iciv_border_width  |integer y| 边框和进度条宽度  |
 |iciv_hint_smallimageview | boolean|  是否隐藏小图片|
+
+
+ 
+### 动态 设置属性值：
 ```java
    
                //填充大图片
@@ -90,9 +82,9 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
                 
 ```
 
-
-
-
+## Tips:
+ 原理很简单，献丑了，方便大家调用，为了节省大家时间
+ 
 
 
 
