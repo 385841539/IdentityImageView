@@ -22,8 +22,9 @@ Download(简单的两个类：IdentityImageView，CircleImageView,最好下载�
 	}
 
     dependencies {
-     compile 'com.github.385841539:IdentityImageView:-SNAPSHOT'
-	}
+    
+               compile 'com.github.385841539:IdentityImageView:-SNAPSHOT'
+     }
 
 ```
 
