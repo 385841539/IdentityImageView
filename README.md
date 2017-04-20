@@ -70,30 +70,26 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 |  iciv_border_width  |integer y| 边框和进度条宽度  |
 |iciv_hint_smallimageview | boolean|  是否隐藏小图片|
 ```java
-
-	CommonBehavior.from(mFloatingActionButton).show();//代码控制显示
-	CommonBehavior.from(mFloatingActionButton).hide();//隐藏
-
-	CommonBehavior.from(mFloatingActionButton)
-		.setMinScrollY(20)
-		.setScrollYDistance(100)
-		.setDuration(1000)
-		.setInterpolator(new LinearOutSlowInInterpolator());
+   
+               //填充大图片
+                identityImageView.getBigCircleImageView().setImageResource(R.mipmap.guojia);
+		
+		//改变图片比例大小，
+                identityImageView.setRadiusScale(0.1f);
+		
+		
+	          //增加边框
+                identityImageView.setBorderWidth(100);
+                identityImageView.setBorderColor(R.color.colorTest);
+		
+		   //增加进度条，以及改变的角度
+                identityImageView.setIsprogress(true);
+                identityImageView.setProgressColor(R.color.colorAccent);
+		identityImageView.setProgress(120);
+		
+                
 ```
 
-## Tips
-
-1、因为根布局为CoordinatorLayout，所以使用时Toolbar可能会遮盖RecyclerView顶部的item，BottomBar也可能会遮盖底部item。
-可以参考知乎首页设置顶部留白，具体可为RecyclerView添加一个占位的ItemDecoration，或者顶部加一个占位的View，若场景比较固定可简单设置Padding，Margin等，
-详情可见Demo，简单处理了这种情况。
-
-
-2、FloatingActionButton的elevation若大于BottomBar的elevation，则FloatingActionButton动画覆盖在BottomBar上层，反之则在下层，为gif的下部两个按钮的效果。
-
-
-## Apk and More Info
-
-For more usage, you can download or clone the demo. You can also [download the demo apk](https://github.com/Lauzy/LBehavior/raw/master/apk/demo.apk).
 
 
 
