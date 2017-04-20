@@ -66,6 +66,8 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 ### 动态 设置属性值：
 ```java
    
+                identityImageView = ((IdentityImageView) findViewById(R.id.iiv));
+               
                //填充大图片
                 identityImageView.getBigCircleImageView().setImageResource(R.mipmap.guojia);
 		
