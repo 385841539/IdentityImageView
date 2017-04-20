@@ -13,22 +13,8 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 
 
 ## Download
-  (简单的两个类：IdentityImageView，CircleImageView,最好下载下来，方便更改)
-```java
-    allprojects {
-	    repositories {
-		    ...
-		    maven { url 'https://jitpack.io' }
-	    }
-	}
 
-    dependencies {
-    
-               compile 'com.github.385841539:IdentityImageView:-SNAPSHOT'
-     }
-
-```
-
+  简单的两个类：IdentityImageView，CircleImageView,下载下来 放到项目里面
 # Usage
 
 
