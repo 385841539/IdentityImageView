@@ -44,7 +44,6 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 基本使用：
 
 
-根布局需为CoordinatorLayout，类似FrameLayout
 ```xml
 <com.example.identityimageview.widegt.IdentityImageView
         android:id="@+id/iiv"
@@ -58,27 +57,27 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 ```
 
 
-根据不同的View在xml中设置不同的layout_behavior
+ 
+```
 
-
-
-参数     							|	说明
------------------------------------|-----------------------
-@string/title_view_behavior   		|   顶部标题栏
-@string/bottom_view_behavior   	|   底部导航栏
-@string/fab_scale_behavior   		|   浮动按钮（缩放）
-@string/fab_vertical_behavior   	|    浮动按钮（上下滑动）
-
-
-
+     <attr name="iciv_bigimage" format="reference"></attr><!--大图片-->
+        <attr name="iciv_smallimage" format="reference"></attr><!--小图片-->
+        <attr name="iciv_angle" format="float"></attr><!--标识角度-->
+        <attr name="iciv_radiusscale" format="float"></attr><!--大小图片比例-->
+        <attr name="iciv_isprogress" format="boolean"></attr><!--是否有进度条-->
+        <attr name="iciv_progress_collor" format="color|reference"></attr><!--进度条颜色-->
+        <attr name="iciv_border_color" format="color|reference"></attr><!--边框颜色-->
+        <attr name="iciv_border_width" format="integer"></attr><!--边框宽度-->
+        <attr name="iciv_hint_smallimageview" format="boolean"></attr><!--是否隐藏小图片-->
+```
 自定义(均设有默认值，可不使用)：
 
 
-| 方法           	 		|    参数           	| 说明  					|
+| 命名           	 		|    参数           	| 说明  					|
 | ------------------------- |------------------ | --------------------- |
-| setMinScrollY				| int y 			| 设置触发动画的最小滑动距离，如 setMinScrollY(10)为滑动10像素才可触发动画，默认为5.|
-| setScrollYDistance		| int y      	    | 设置触发动画的滑动距离，防止用户缓慢滑动时单次滑动距离一直小于setMinScrollY的最小滑动距离导致无法触发动画.如设置此值为100，则用户即便缓慢滑动，当滑动距离达到100时也可触发动画.默认为40.|
-| setDuration				| int duration     	| 设置动画持续时间.默认为400ms.|
+| iciv_bigimage				| reference 			|大图片|
+| iciv_smallimage		| reference       	    | 小图片(标识)|
+| iciv_angle				| float angle     	| 标识的角度，默认为45度|
 | setInterpolator			| Interpolator interpolator | 设置动画插补器，修饰动画效果.默认模式为LinearOutSlowInInterpolator. [Interpolator官方文档](https://developer.android.google.cn/reference/android/view/animation/Interpolator.html)|
 
 
