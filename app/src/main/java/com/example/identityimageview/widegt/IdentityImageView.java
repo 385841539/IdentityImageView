@@ -11,6 +11,8 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.identityimageview.R;
+
 
 /**
  * Created by 丁瑞 on 2017/4/9.
@@ -20,7 +22,7 @@ public class IdentityImageView extends ViewGroup {
     private Context mContext;
     private CircleImageView bigImageView;//大圆
     private CircleImageView smallImageView;//小圆
-    private float radiusScale = 0.2f;//小图片与大图片的比例，默认0.4
+    private float radiusScale ;//小图片与大图片的比例，默认0.28，刚刚好，大了不好看
     int radius;//大图片半径
     private int smallRadius;//小图片半径
     private double angle = 45; //标识角度大小
@@ -187,7 +189,7 @@ public class IdentityImageView extends ViewGroup {
         bigImage = tta.getDrawable(R.styleable.IdentityImageView_iciv_bigimage);
         smallimage = tta.getDrawable(R.styleable.IdentityImageView_iciv_smallimage);
         angle = tta.getFloat(R.styleable.IdentityImageView_iciv_angle, 45);//小图以及进度条起始角度
-        radiusScale = tta.getFloat(R.styleable.IdentityImageView_iciv_radiusscale, 0.2f);//大图和小图的比例
+        radiusScale = tta.getFloat(R.styleable.IdentityImageView_iciv_radiusscale, 0.28f);//大图和小图的比例
         isprogress = tta.getBoolean(R.styleable.IdentityImageView_iciv_isprogress, false);
         //是否要进度条，不为true的话，设置，进度条颜色和宽度也没用
 
