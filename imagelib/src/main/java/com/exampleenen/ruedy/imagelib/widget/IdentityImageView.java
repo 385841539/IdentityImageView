@@ -1,4 +1,4 @@
-package com.example.identityimageview.widegt;
+package com.exampleenen.ruedy.imagelib.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,7 +11,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.identityimageview.R;
+import com.exampleenen.ruedy.imagelib.R;
 
 
 /**

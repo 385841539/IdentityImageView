@@ -55,12 +55,11 @@
     </LinearLayout>
 
 
-
-    <com.example.identityimageview.widegt.IdentityImageView
+    <com.exampleenen.ruedy.imagelib.widget.IdentityImageView
         android:id="@+id/iiv"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        app:iciv_progress_collor="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"></com.example.identityimageview.widegt.IdentityImageView>
+        app:iciv_progress_collor="@color/colorPrimary"></com.exampleenen.ruedy.imagelib.widget.IdentityImageView>
 </RelativeLayout>

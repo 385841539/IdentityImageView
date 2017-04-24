@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.identityimageview.widegt;
+package com.exampleenen.ruedy.imagelib.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -36,7 +36,8 @@ import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import com.example.identityimageview.R;
+import com.exampleenen.ruedy.imagelib.R;
+
 
 public class CircleImageView extends ImageView {
 

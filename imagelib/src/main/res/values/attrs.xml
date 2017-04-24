@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
+    <declare-styleable name="IdentityImageView">
+        <attr name="iciv_bigimage" format="reference"></attr><!--大图片-->
+        <attr name="iciv_smallimage" format="reference"></attr><!--小图片-->
+        <attr name="iciv_angle" format="float"></attr><!--标识角度-->
+        <attr name="iciv_radiusscale" format="float"></attr><!--大小图片比例-->
+        <attr name="iciv_isprogress" format="boolean"></attr><!--是否有进度条-->
+        <attr name="iciv_progress_collor" format="color|reference"></attr><!--进度条颜色-->
+        <attr name="iciv_border_color" format="color|reference"></attr><!--边框颜色-->
+        <attr name="iciv_border_width" format="integer"></attr><!--边框宽度-->
+        <attr name="iciv_hint_smallimageview" format="boolean"></attr><!--是否隐藏小图片-->
+    </declare-styleable>
+</resources>
