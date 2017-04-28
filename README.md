@@ -74,7 +74,7 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 ```
 
 ## Tips:
- 原理很简单，献丑了，方便大家调用，为了节省大家时间
+ 原理很简单，如果需要V标识环绕大图一圈还需要改下代码。献丑了，方便大家调用，为了节省大家时间。
  
 
 
