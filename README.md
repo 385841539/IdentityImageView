@@ -3,7 +3,7 @@
 一个能带进度条的图片框架，同时有身份标识动能，简单易用
 
 ## 效果图：
-![效果图](https://github.com/385841539/IdentityImageView/blob/master/app/src/main/res/drawable/biaoshi.gif)
+![效果图](https://github.com/385841539/IdentityImageView/blob/master/app/src/main/res/mipmap-xhdpi/biaoshi.gif)
 
 
 # 博客介绍
