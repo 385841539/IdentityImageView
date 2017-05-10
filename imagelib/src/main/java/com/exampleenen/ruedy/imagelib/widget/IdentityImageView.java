@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.TintTypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ public class IdentityImageView extends ViewGroup {
     private Context mContext;
     private CircleImageView bigImageView;//大圆
     private CircleImageView smallImageView;//小圆
-    private float radiusScale ;//小图片与大图片的比例，默认0.28，刚刚好，大了不好看
+    private float radiusScale;//小图片与大图片的比例，默认0.28，刚刚好，大了不好看
     int radius;//大图片半径
     private int smallRadius;//小图片半径
     private double angle = 45; //标识角度大小
@@ -38,7 +39,7 @@ public class IdentityImageView extends ViewGroup {
     private Drawable bigImage;//大图片
     private Drawable smallimage;//小图片
     private int setprogressColor = 0;//动态设置进度条颜色值
-
+    private int totalwidth;
     public IdentityImageView(Context context) {
         this(context, null);
     }
@@ -67,18 +68,22 @@ public class IdentityImageView extends ViewGroup {
         switch (viewWidthMode) {
             case MeasureSpec.EXACTLY:   //说明在布局文件中使用的是具体值：100dp或者match_parent
                 //为了方便，让半径等于宽高中小的那个，再设置宽高至半径大小
-                int totalwidth = viewWidht < viewHeight ? viewWidht : viewHeight;
-                radius = totalwidth / 2;
+                totalwidth = viewWidht < viewHeight ? viewWidht : viewHeight;
+                float scale = 1 + radiusScale;
+                int radius2 = totalwidth / 2;
+                radius = (int) (radius2 / scale);
                 break;
             case MeasureSpec.AT_MOST:  //说明在布局文件中使用的是wrap_content:
                 //这时我们也写死宽高
                 radius = 200;
+                totalwidth = (int) ((radius + radius * radiusScale) * 2);
                 break;
             default:
                 radius = 200;
+                totalwidth = (int) ((radius + radius * radiusScale) * 2);
                 break;
         }
-        setMeasuredDimension(2 * radius, 2 * radius);
+        setMeasuredDimension(totalwidth, totalwidth);
         adjustThreeView();
     }
 
@@ -100,12 +105,12 @@ public class IdentityImageView extends ViewGroup {
      * @param canvas 画布
      */
     private void drawBorder(Canvas canvas) {
-        canvas.drawCircle(radius, radius, radius - borderWidth / 2, mBorderPaint);
+        canvas.drawCircle(totalwidth/2, totalwidth/2, radius - borderWidth / 2, mBorderPaint);
     }
 
     //画圆弧进度条
     private void drawProgress(Canvas canvas) {
-        RectF rectf = new RectF(borderWidth / 2, borderWidth / 2, getWidth() - borderWidth / 2, getHeight() - borderWidth / 2);
+        RectF rectf = new RectF(smallRadius+borderWidth / 2, smallRadius+borderWidth / 2, getWidth() -smallRadius- borderWidth / 2, getHeight()-smallRadius - borderWidth / 2);
         //定义的圆弧的形状和大小的范围,之所以减去圆弧的一半，是因为画圆环的高度时，
         // 原因就在于setStrokeWidth这个方法，并不是往圆内侧增加圆环宽度的，而是往外侧增加一半，往内侧增加一半。
         canvas.drawArc(rectf, (float) angle, progresss, false, mProgressPaint);
@@ -138,13 +143,14 @@ public class IdentityImageView extends ViewGroup {
     protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
         //重点在于smallImageView的位置确定,默认为放在右下角，可自行拓展至其他位置
 
+
         double cos = Math.cos(angle * Math.PI / 180);
         double sin = Math.sin(angle * Math.PI / 180);
-        double left = radius + (radius * cos - smallRadius);
-        double top = radius + (radius * sin - smallRadius);
+        double left = totalwidth/2 + (radius * cos - smallRadius);
+        double top = totalwidth/2 + (radius * sin - smallRadius);
         int right = (int) (left + 2 * smallRadius);
         int bottom = (int) (top + 2 * smallRadius);
-        bigImageView.layout(borderWidth / 2, borderWidth / 2, 2 * radius - borderWidth / 2, 2 * radius - borderWidth / 2);
+        bigImageView.layout(smallRadius+borderWidth / 2, smallRadius+borderWidth / 2, totalwidth-smallRadius - borderWidth / 2, totalwidth-smallRadius - borderWidth / 2);
         textView.layout((int) left, (int) top, right, bottom);
         smallImageView.layout((int) left, (int) top, right, bottom);
 

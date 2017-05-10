@@ -19,6 +19,15 @@
             android:onClick="click"
             android:text="变换头像" />
 
+
+        <Button
+            android:id="@+id/bt5"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="click"
+            android:text="生成小图" />
+
         <Button
             android:id="@+id/bt2"
             android:layout_width="1dp"
@@ -26,6 +35,14 @@
             android:layout_weight="1"
             android:onClick="click"
             android:text="小图变小" />
+
+        <Button
+            android:id="@+id/bt6"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="click"
+            android:text="移动小图" />
 
         <Button
             android:id="@+id/bt3"
@@ -43,14 +60,6 @@
             android:onClick="click"
             android:text="有进度条" />
 
-        <Button
-            android:id="@+id/bt5"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="click"
-            android:text="变成文字" />
-
 
     </LinearLayout>
 
@@ -61,5 +70,6 @@
         android:layout_height="300dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        app:iciv_progress_collor="@color/colorPrimary"></com.exampleenen.ruedy.imagelib.widget.IdentityImageView>
+        android:background="@color/colorPrimary"
+        app:iciv_progress_collor="@color/colorPrimary"/>
 </RelativeLayout>

@@ -2,10 +2,12 @@ package com.example.identityimageview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.exampleenen.ruedy.imagelib.widget.IdentityImageView;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,12 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.bt3:
                 //增加边框
-                identityImageView.setBorderWidth(100);
+                identityImageView.setBorderWidth(50);
                 identityImageView.setBorderColor(R.color.colorTest);
-                identityImageView.setAngle(angle += 7);
-                if (angle >= 58) {
-                    angle = 18;
-                }
+
                 break;
             case R.id.bt4:
                 //增加进度条，没按一次加10,以及改变的角度
@@ -65,17 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.bt5:
                 identityImageView.getSmallCircleImageView().setImageResource(R.mipmap.v);
-                if (flag) {
-                    identityImageView.getTextView().setVisibility(View.VISIBLE);
-                    identityImageView.getSmallCircleImageView().setVisibility(View.GONE);
-                    flag=false;
-                } else {
-                    identityImageView.getTextView().setVisibility(View.GONE);
-                    identityImageView.getSmallCircleImageView().setVisibility(View.VISIBLE);
-                flag=true;
-                }
-                identityImageView.getTextView().setBackgroundColor((getResources().getColor(R.color.colorTest)));
-                identityImageView.getTextView().setText("V");
+                break;
+
+            case R.id.bt6:
+                identityImageView.setAngle(angle += 7);
                 break;
             default:
                 break;
