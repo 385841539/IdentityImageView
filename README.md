@@ -15,8 +15,27 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
 ## Download
 
   简单的两个类：IdentityImageView，CircleImageView,下载下来 放到项目里面
-# Usage
 
+#### OR 
+>> 1.先在 build.gradle(Project:XXXX) 的 repositories 添加:</br>
+```
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+>> 2.然后在 build.gradle(Module:app) 的 dependencies 添加:</br>
+ 
+ ```
+ dependencies {
+	        
+		 compile 'com.github.385841539:IdentityImageView:1.1.0'
+	}
+```
+# Usage
 
 ### 基本使用：
 
