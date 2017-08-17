@@ -92,6 +92,7 @@ public class IdentityImageView extends ViewGroup {
     @Override
     protected void onDraw(Canvas canvas) {
         initPaint();
+
         if (borderWidth > 0) {
             drawBorder(canvas);
         }
