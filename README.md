@@ -32,7 +32,10 @@ CSDN:[http://blog.csdn.net/iamdingruihaha/article/details/69895266](http://blog.
  ```
  dependencies {
 	        
+		//1.1.0已经废弃，有bug，请使用1.2.0
 		 compile 'com.github.385841539:IdentityImageView:1.1.0'
+		 
+		 compile 'com.github.385841539:IdentityImageView:1.2.0'
 	}
 ```
 # Usage
