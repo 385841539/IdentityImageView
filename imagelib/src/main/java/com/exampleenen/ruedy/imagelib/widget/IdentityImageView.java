@@ -29,7 +29,7 @@ public class IdentityImageView extends ViewGroup {
     private double angle = 45; //标识角度大小
     private boolean isprogress;//是否可以加载进度条，必须设置为true才能开启
     private int progressCollor;//进度条颜色
-    private int borderColor;//边框颜色
+    private int borderColor = 0;//边框颜色
     private int borderWidth;//边框、进度条宽度
     private TextView textView;//标识符为文字，用的地方比较少
     private boolean hintSmallView;//标识符是否隐藏
@@ -39,7 +39,9 @@ public class IdentityImageView extends ViewGroup {
     private Drawable bigImage;//大图片
     private Drawable smallimage;//小图片
     private int setprogressColor = 0;//动态设置进度条颜色值
+    private int setborderColor = 0;//动态设置边框颜色值
     private int totalwidth;
+
     public IdentityImageView(Context context) {
         this(context, null);
     }
@@ -90,12 +92,13 @@ public class IdentityImageView extends ViewGroup {
     @Override
     protected void onDraw(Canvas canvas) {
         initPaint();
-        if (isprogress) {
-            drawProgress(canvas);
-        }
         if (borderWidth > 0) {
             drawBorder(canvas);
         }
+        if (isprogress) {
+            drawProgress(canvas);
+        }
+
 
     }
 
@@ -105,12 +108,12 @@ public class IdentityImageView extends ViewGroup {
      * @param canvas 画布
      */
     private void drawBorder(Canvas canvas) {
-        canvas.drawCircle(totalwidth/2, totalwidth/2, radius - borderWidth / 2, mBorderPaint);
+        canvas.drawCircle(totalwidth / 2, totalwidth / 2, radius - borderWidth / 2, mBorderPaint);
     }
 
     //画圆弧进度条
     private void drawProgress(Canvas canvas) {
-        RectF rectf = new RectF(smallRadius+borderWidth / 2, smallRadius+borderWidth / 2, getWidth() -smallRadius- borderWidth / 2, getHeight()-smallRadius - borderWidth / 2);
+        RectF rectf = new RectF(smallRadius + borderWidth / 2, smallRadius + borderWidth / 2, getWidth() - smallRadius - borderWidth / 2, getHeight() - smallRadius - borderWidth / 2);
         //定义的圆弧的形状和大小的范围,之所以减去圆弧的一半，是因为画圆环的高度时，
         // 原因就在于setStrokeWidth这个方法，并不是往圆内侧增加圆环宽度的，而是往外侧增加一半，往内侧增加一半。
         canvas.drawArc(rectf, (float) angle, progresss, false, mProgressPaint);
@@ -123,7 +126,11 @@ public class IdentityImageView extends ViewGroup {
             mBorderPaint.setStyle(Paint.Style.STROKE);
             mBorderPaint.setAntiAlias(true);
         }
-        mBorderPaint.setColor(borderColor);
+        if (setborderColor != 0) {
+            mBorderPaint.setColor(getResources().getColor(setborderColor));
+        }else {
+            mBorderPaint.setColor(borderColor);
+        }
         mBorderPaint.setStrokeWidth(borderWidth);
 
         if (mProgressPaint == null) {
@@ -146,11 +153,11 @@ public class IdentityImageView extends ViewGroup {
 
         double cos = Math.cos(angle * Math.PI / 180);
         double sin = Math.sin(angle * Math.PI / 180);
-        double left = totalwidth/2 + (radius * cos - smallRadius);
-        double top = totalwidth/2 + (radius * sin - smallRadius);
+        double left = totalwidth / 2 + (radius * cos - smallRadius);
+        double top = totalwidth / 2 + (radius * sin - smallRadius);
         int right = (int) (left + 2 * smallRadius);
         int bottom = (int) (top + 2 * smallRadius);
-        bigImageView.layout(smallRadius+borderWidth / 2, smallRadius+borderWidth / 2, totalwidth-smallRadius - borderWidth / 2, totalwidth-smallRadius - borderWidth / 2);
+        bigImageView.layout(smallRadius + borderWidth / 2, smallRadius + borderWidth / 2, totalwidth - smallRadius - borderWidth / 2, totalwidth - smallRadius - borderWidth / 2);
         textView.layout((int) left, (int) top, right, bottom);
         smallImageView.layout((int) left, (int) top, right, bottom);
 
@@ -305,7 +312,7 @@ public class IdentityImageView extends ViewGroup {
      */
     public void setBorderColor(int color) {
         if (color == borderColor) return;
-        borderColor = color;
+        setborderColor = color;
         requestLayout();
         invalidate();
 
@@ -328,7 +335,6 @@ public class IdentityImageView extends ViewGroup {
      */
     public void setBorderWidth(int width) {
         if (width == borderWidth) return;
-        ;
         borderWidth = width;
         requestLayout();//重走onLayout方法
         invalidate();//重走onDraw方法
